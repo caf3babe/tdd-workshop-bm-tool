@@ -1,9 +1,8 @@
 package at.ac.fhcampuswien.csdc21bb.group3;
 
-import at.ac.fhcampuswien.csdc21bb.group3.Bookmark;
-import at.ac.fhcampuswien.csdc21bb.group3.BookmarkTool;
 import org.junit.jupiter.api.Test;
 
+import java.awt.print.Book;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,5 +25,7 @@ class BookmarkTest {
             assertTrue(bookmark.getTags().contains(newsTag));
         });
     }
+
+
 
 }
