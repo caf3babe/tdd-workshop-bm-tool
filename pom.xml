@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>tdd-workshop-bm-tool</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+
+        <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
+        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
+
+        <java.version>1.8</java.version>
+        <project.sourceEncoding>UTF-8</project.sourceEncoding>
+
+        <project.build.sourceEncoding>${project.sourceEncoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.sourceEncoding}</project.reporting.outputEncoding>
+
+        <!-- Latest stable release does not work with Maven Surefire 2.21.0 check: https://junit.org/junit5/docs/snapshot/user-guide/#running-tests-build-maven-->
+        <junit.platform.version>1.7.1</junit.platform.version>
+        <junit.jupiter.api>5.7.1</junit.jupiter.api>
+
+        <!-- Coverage configuration -->
+        <jacoco.maven.version>0.8.6</jacoco.maven.version>
+
+        <!-- Pitest Configuration-->
+        <pitest.version>1.6.5</pitest.version>
+        <pitest.junit5.version>0.14</pitest.junit5.version>
+        <junit.platform.surefire.provider>1.3.2</junit.platform.surefire.provider>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.api}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.api}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Javadoc plugin does not require to be explicitly stated-->
+        <!-- Maven goal: mvn clean javadoc:javadoc javadoc:test-javadoc -->
+        <!--
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.0</version>
+            <scope>compile</scope>
+        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Required for compiling the project usign maven -->
+            <plugin><!-- Compiler configuration-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+
+                    <showWarnings>true</showWarnings>   <!-- Needs this -->
+
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>   <!-- recommended -->
+                    </compilerArgs>
+
+                    <encoding>${project.build.sourceEncoding}</encoding>
+
+                </configuration>
+            </plugin>
+
+            <!-- Required for running unit tests -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${maven.surefire.plugin}</version>
+                <configuration>
+                    <includes>
+                        <include>**/Test*.java</include>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                        <include>**/*TestCase.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**Main**</exclude>
+                    </excludes>
+
+                </configuration>
+            </plugin>
+
+            <!-- Required for generating coverage report -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.maven.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/ui/**/*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <!-- Required for generating PIT Mutation reports -->
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest.version}</version>
+                <dependencies>
+                    <dependency> <!-- Only required because PITest does not work with JUnit5 without it -->
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>${pitest.junit5.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <!--<timestampedReports>false</timestampedReports>-->
+                    <!--<inScopeClasses>
+                        <param>lapr.project.model.*</param>
+                        <param>lapr.project.utils.*</param>
+                    </inScopeClasses>-->
+                    <targetClasses>
+                        <!-- Example: <param>lapr.project.model.*</param> -->
+                        <param>pt.ipp.isep.dei.examples.tdd.basic.domain.*</param>
+                    </targetClasses>
+
+                    <targetTests>
+                        <!-- Example: <param>lapr.project.utils.*</param> -->
+                        <param>pt.ipp.isep.dei.examples.tdd.basic.domain.*</param>
+                    </targetTests>
+
+                    <outputFormats>
+                        <outputFormat>XML</outputFormat>
+                        <outputFormat>HTML</outputFormat>
+                    </outputFormats>
+                    <!--<verbose>true</verbose>-->
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
