@@ -41,6 +41,17 @@ class BookmarkToolTest {
     }
 
     @Test
+    public void getBookmarkWhichWasNeverAdded() throws MalformedURLException {
+        Bookmark b1 = new Bookmark("https://www.orf.at");
+        Bookmark b2 = new Bookmark("https://www.fh-campuswien.ac.at");
+        BookmarkTool bookmarkTool = new BookmarkTool();
+
+        bookmarkTool.addBookmark(b1);
+
+        assertNull(bookmarkTool.getBookmark(b2));
+    }
+
+    @Test
     public void increaseRatingOfBookmarkWhenBookmarkAlreadyExists() throws MalformedURLException {
         Bookmark bookmark = new Bookmark("https://www.orf.at");
         BookmarkTool bookmarkTool = new BookmarkTool();
