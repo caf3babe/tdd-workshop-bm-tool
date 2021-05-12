@@ -33,11 +33,9 @@ class BookmarkToolTest {
         BookmarkTool bookmarkTool = new BookmarkTool();
 
         bookmarkTool.addBookmark(bookmark);
-
         int ratingAfterFirstInsert = bookmarkTool.getBookmark(bookmark).getRating();
 
         bookmarkTool.addBookmark(bookmark);
-
         int ratingAfterSecondInsert = bookmarkTool.getBookmark(bookmark).getRating();
 
         assertTrue(ratingAfterFirstInsert < ratingAfterSecondInsert);

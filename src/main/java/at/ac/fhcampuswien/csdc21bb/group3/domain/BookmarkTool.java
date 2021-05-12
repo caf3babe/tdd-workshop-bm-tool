@@ -1,9 +1,6 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class BookmarkTool {
 
