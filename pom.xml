@@ -73,7 +73,7 @@
     <build>
         <plugins>
 
-            <!-- Required for compiling the project usign maven -->
+            <!-- Required for compiling the project using maven -->
             <plugin><!-- Compiler configuration-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -159,19 +159,24 @@
                     </inScopeClasses>-->
                     <targetClasses>
                         <!-- Example: <param>lapr.project.model.*</param> -->
-                        <param>pt.ipp.isep.dei.examples.tdd.basic.domain.*</param>
+                        <param>at.ac.fhcampuswien.csdc21bb.group3.domain.*</param>
                     </targetClasses>
 
                     <targetTests>
                         <!-- Example: <param>lapr.project.utils.*</param> -->
-                        <param>pt.ipp.isep.dei.examples.tdd.basic.domain.*</param>
+                        <param>at.ac.fhcampuswien.csdc21bb.group3.domain.*</param>
                     </targetTests>
 
                     <outputFormats>
                         <outputFormat>XML</outputFormat>
                         <outputFormat>HTML</outputFormat>
                     </outputFormats>
-                    <!--<verbose>true</verbose>-->
+
+                    <mutators>
+                        <mutator>DEFAULTS</mutator>
+                    </mutators>
+
+                    <verbose>true</verbose>
                 </configuration>
 
             </plugin>
