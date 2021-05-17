@@ -66,11 +66,17 @@ public class BookmarkTool {
         return this.bookmarks;
     }
 
-    public ArrayList<Bookmark> filterByKeyword(String keyword) {
+    public ArrayList<Bookmark> filterByKeywords(String... keywords) {
         ArrayList<Bookmark> filteredBookmarks = new ArrayList<>();
-        for(Bookmark b : this.bookmarks){
-            if(b.getURL().getPath().contains(keyword)) filteredBookmarks.add(b);
+
+        for (String keyword : keywords) {
+            for (Bookmark b : this.bookmarks) {
+                if (b.getURL().toString().contains(keyword))
+                    // ensure single entry of each bookmark
+                    if (!filteredBookmarks.contains(b)) filteredBookmarks.add(b);
+            }
         }
+
         return filteredBookmarks;
     }
 }
