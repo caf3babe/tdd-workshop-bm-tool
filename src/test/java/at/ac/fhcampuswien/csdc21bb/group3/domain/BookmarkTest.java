@@ -82,4 +82,13 @@ class BookmarkTest {
         assertEquals(Collections.singletonList("code"), actualBookmark.getTags());
     }
 
+    @Test
+    public void addATagTwiceToTheSameBookmark() throws MalformedURLException {
+        Bookmark actualBookmark = new Bookmark("https://www.github.com");
+        actualBookmark.addTag("code");
+        actualBookmark.addTag("code");
+
+        assertEquals(Collections.singletonList("code"), actualBookmark.getTags());
+    }
+
 }
