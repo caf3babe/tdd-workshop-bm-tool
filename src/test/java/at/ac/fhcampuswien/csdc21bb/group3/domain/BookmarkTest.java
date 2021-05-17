@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,7 +70,16 @@ class BookmarkTest {
     public void removeNonExistentTagFromABookmark() throws MalformedURLException {
         Bookmark actualBookmark = new Bookmark("https://www.github.com");
         actualBookmark.addTag("code");
+
         assertDoesNotThrow(() -> actualBookmark.removeTag("git"));
+    }
+
+    @Test
+    public void addATagToABookmark() throws MalformedURLException {
+        Bookmark actualBookmark = new Bookmark("https://www.github.com");
+        actualBookmark.addTag("code");
+
+        assertEquals(Collections.singletonList("code"), actualBookmark.getTags());
     }
 
 }
