@@ -10,7 +10,7 @@ public class Bookmark {
     private int rating;
 
     public Bookmark(String url) throws MalformedURLException {
-        this(url, new ArrayList<String>());
+        this(url, new ArrayList<>());
     }
 
     public Bookmark(String url, ArrayList<String> tags) throws MalformedURLException {
@@ -42,5 +42,9 @@ public class Bookmark {
 
     public boolean isURLSecure() {
         return this.url.getProtocol().equals("https");
+    }
+
+    public URL getURL() {
+        return this.url;
     }
 }
