@@ -50,5 +50,19 @@ class BookmarkTest {
         assertFalse(bookmark.toString().isEmpty());
     }
 
+    @Test
+    public void removeTagFromABookmark() throws MalformedURLException {
+        Bookmark actualBookmark = new Bookmark("https://www.github.com");
+        actualBookmark.addTag("code");
+        actualBookmark.addTag("sourcecode");
+        actualBookmark.addTag("repository");
+        actualBookmark.addTag("git");
+
+        actualBookmark.removeTag("sourcecode");
+        actualBookmark.removeTag("git");
+
+        assertEquals(Arrays.asList("code","repository"), actualBookmark.getTags());
+
+    }
 
 }

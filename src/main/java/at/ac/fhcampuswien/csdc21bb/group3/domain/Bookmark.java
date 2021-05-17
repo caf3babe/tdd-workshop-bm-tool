@@ -47,4 +47,12 @@ public class Bookmark {
     public URL getURL() {
         return this.url;
     }
+
+    public void addTag(String tag) {
+        if (!this.tags.contains(tag)) this.tags.add(tag);
+    }
+
+    public void removeTag(String tag) {
+        this.tags.remove(tag);
+    }
 }
