@@ -79,4 +79,10 @@ public class BookmarkTool {
 
         return filteredBookmarks;
     }
+
+    public void removeBookmark(Bookmark bookmark) {
+        this.bookmarks.removeIf(bookmark1 -> bookmark1.getURL().toString()
+                .equals(bookmark.getURL().toString())
+        );
+    }
 }

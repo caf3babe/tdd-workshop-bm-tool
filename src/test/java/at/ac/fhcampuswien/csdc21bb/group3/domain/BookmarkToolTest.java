@@ -158,4 +158,20 @@ class BookmarkToolTest {
 
     }
 
+    /**
+     * Unsure how to interpret the choice of which bookmark to remove
+     */
+
+    @Test
+    public void ensureRemovingABookmarkFromTheBookmarkTool() throws MalformedURLException {
+        Bookmark b1 = new Bookmark("https://www.fh-campuswien.ac.at");
+        BookmarkTool bookmarkTool = new BookmarkTool();
+        bookmarkTool.addBookmark(b1);
+
+        Bookmark b2 = new Bookmark("https://www.fh-campuswien.ac.at");
+        bookmarkTool.removeBookmark(b2);
+
+        assertEquals(0, bookmarkTool.getBookmarks().size());
+    }
+
 }
