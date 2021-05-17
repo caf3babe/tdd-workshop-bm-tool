@@ -65,4 +65,11 @@ class BookmarkTest {
 
     }
 
+    @Test
+    public void removeNonExistentTagFromABookmark() throws MalformedURLException {
+        Bookmark actualBookmark = new Bookmark("https://www.github.com");
+        actualBookmark.addTag("code");
+        assertDoesNotThrow(() -> actualBookmark.removeTag("git"));
+    }
+
 }
