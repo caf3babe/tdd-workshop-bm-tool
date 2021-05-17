@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -61,5 +60,17 @@ public class BookmarkTool {
             if(b.getURL().getHost().equals(bookmark.getURL().getHost())) associatedBookmarks.add(b);
         }
         return associatedBookmarks;
+    }
+
+    public ArrayList<Bookmark> getBookmarks() {
+        return this.bookmarks;
+    }
+
+    public ArrayList<Bookmark> filterByKeyword(String keyword) {
+        ArrayList<Bookmark> filteredBookmarks = new ArrayList<>();
+        for(Bookmark b : this.bookmarks){
+            if(b.getURL().getPath().contains(keyword)) filteredBookmarks.add(b);
+        }
+        return filteredBookmarks;
     }
 }
