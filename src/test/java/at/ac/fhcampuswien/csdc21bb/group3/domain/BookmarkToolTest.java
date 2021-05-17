@@ -174,4 +174,16 @@ class BookmarkToolTest {
         assertEquals(0, bookmarkTool.getBookmarks().size());
     }
 
+    @Test
+    public void ensureRemovingANonPresentBookmarkFromTheBookmarkTool() throws MalformedURLException {
+        Bookmark b1 = new Bookmark("https://www.fh-campuswien.ac.at");
+        BookmarkTool bookmarkTool = new BookmarkTool();
+        bookmarkTool.addBookmark(b1);
+
+        Bookmark b2 = new Bookmark("https://www.google.at");
+        bookmarkTool.removeBookmark(b2);
+
+        assertEquals(1, bookmarkTool.getBookmarks().size());
+    }
+
 }
