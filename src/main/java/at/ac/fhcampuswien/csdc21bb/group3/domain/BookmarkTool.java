@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BookmarkTool {
 
@@ -38,5 +39,18 @@ public class BookmarkTool {
             }
         }
         return found;
+    }
+
+    public int getSecureURLsAmount() {
+        int httpsUrlsAmount = 0;
+
+        Iterator<Bookmark> iterator = bookmarks.iterator();
+        Bookmark bookmark;
+        while(iterator.hasNext()){
+            bookmark = iterator.next();
+            if(bookmark.isURLSecure()) httpsUrlsAmount++ ;
+        }
+
+        return httpsUrlsAmount;
     }
 }

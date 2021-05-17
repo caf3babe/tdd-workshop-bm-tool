@@ -64,4 +64,20 @@ class BookmarkToolTest {
 
         assertTrue(ratingAfterFirstInsert < ratingAfterSecondInsert);
     }
+
+    @Test
+    public void ensureRightAmountOfSecureURLsInBookmarkList() throws MalformedURLException {
+        Bookmark b1 = new Bookmark("https://www.orf.at");
+        Bookmark b2 = new Bookmark("https://www.orf.at");
+        Bookmark b3 = new Bookmark("http://www.orf.at");
+        BookmarkTool bookmarkTool = new BookmarkTool();
+        bookmarkTool.addBookmark(b1);
+        bookmarkTool.addBookmark(b2);
+        bookmarkTool.addBookmark(b3);
+
+        int expectedAmount = 2;
+        int actualAmount = bookmarkTool.getSecureURLsAmount();
+
+        assertEquals(expectedAmount, actualAmount);
+    }
 }
