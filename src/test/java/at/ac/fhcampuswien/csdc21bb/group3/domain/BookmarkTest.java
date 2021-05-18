@@ -91,4 +91,11 @@ class BookmarkTest {
         assertEquals(Collections.singletonList("code"), actualBookmark.getTags());
     }
 
+    @Test
+    public void ensureAddedBookmarkHasDate() throws MalformedURLException {
+        String urlString = "https://www.orf.at";
+        Bookmark b = new Bookmark(urlString);
+        assertNotNull(b.getDate());
+    }
+
 }
