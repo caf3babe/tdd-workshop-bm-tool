@@ -18,7 +18,7 @@ public class Bookmark {
     public Bookmark(String url, ArrayList<String> tags) throws MalformedURLException {
         this.url = new URL(url);
         this.tags = tags;
-        this.rating = 0;
+        this.rating = 1;
         this.date = LocalDateTime.now();
     }
 

@@ -1,6 +1,8 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class BookmarkTool {
@@ -16,8 +18,10 @@ public class BookmarkTool {
         int idx = -1;
         for (int i = 0, bookmarksSize = bookmarks.size(); i < bookmarksSize; i++) {
             Bookmark b = bookmarks.get(i);
-            if (b.equals(bookmark))
+            if (b.getURL().toString().equals(bookmark.getURL().toString())) {
                 idx = i;
+                break;
+            }
         }
 
         // unequal -1 means bookmark found in list
@@ -84,5 +88,9 @@ public class BookmarkTool {
         this.bookmarks.removeIf(bookmark1 -> bookmark1.getURL().toString()
                 .equals(bookmark.getURL().toString())
         );
+    }
+
+    public void sortBookmarkListByRate() {
+        bookmarks.sort((o1, o2) -> Integer.compare(o2.getRating(), o1.getRating()));
     }
 }

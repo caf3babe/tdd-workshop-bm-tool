@@ -213,4 +213,31 @@ class BookmarkToolTest {
         assertEquals(1, bookmarkTool.getBookmarks().size());
     }
 
+    @Test
+    public void ensureDescendingSortOfBookMarksByRate() throws MalformedURLException {
+        Bookmark urlYoutube = new Bookmark("https://www.youtube.com");
+        Bookmark urlGoogle1 = new Bookmark("https://www.google.com");
+        Bookmark urlGoogle2 = new Bookmark("https://www.google.com");
+        Bookmark urlORF1 = new Bookmark("https://www.orf.at");
+        Bookmark urlORF2 = new Bookmark("https://www.orf.at");
+        Bookmark urlORF3 = new Bookmark("https://www.orf.at");
+
+        BookmarkTool bookmarkTool = new BookmarkTool();
+
+        bookmarkTool.addBookmark(urlYoutube);
+        bookmarkTool.addBookmark(urlGoogle1);
+        bookmarkTool.addBookmark(urlGoogle2);
+        bookmarkTool.addBookmark(urlORF1);
+        bookmarkTool.addBookmark(urlORF2);
+        bookmarkTool.addBookmark(urlORF3);
+
+        bookmarkTool.sortBookmarkListByRate();
+
+        assertAll(()->{
+            assertEquals(3,bookmarkTool.getBookmarks().get(0).getRating());
+            assertEquals(2,bookmarkTool.getBookmarks().get(1).getRating());
+            assertEquals(1,bookmarkTool.getBookmarks().get(2).getRating());
+        });
+    }
+
 }
