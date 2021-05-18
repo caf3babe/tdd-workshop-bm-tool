@@ -32,6 +32,12 @@
         <pitest.version>1.6.5</pitest.version>
         <pitest.junit5.version>0.14</pitest.junit5.version>
         <junit.platform.surefire.provider>1.3.2</junit.platform.surefire.provider>
+             
+        <properties>
+            <sonar.projectKey>starvis_tdd-workshop-bm-tool</sonar.projectKey>
+            <sonar.organization>starvis</sonar.organization>
+            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        </properties>
 
     </properties>
 
