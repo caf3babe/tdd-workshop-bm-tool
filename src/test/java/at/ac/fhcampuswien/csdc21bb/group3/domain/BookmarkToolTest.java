@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.net.MalformedURLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 class BookmarkToolTest {
 
@@ -233,11 +236,35 @@ class BookmarkToolTest {
 
         bookmarkTool.sortBookmarkListByRate();
 
-        assertAll(()->{
-            assertEquals(3,bookmarkTool.getBookmarks().get(0).getRating());
-            assertEquals(2,bookmarkTool.getBookmarks().get(1).getRating());
-            assertEquals(1,bookmarkTool.getBookmarks().get(2).getRating());
+        assertAll(() -> {
+            assertEquals(3, bookmarkTool.getBookmarks().get(0).getRating());
+            assertEquals(2, bookmarkTool.getBookmarks().get(1).getRating());
+            assertEquals(1, bookmarkTool.getBookmarks().get(2).getRating());
         });
+    }
+
+    @Test
+    public void ensureDescendingSortOfBookMarksByDate() throws MalformedURLException {
+
+        LocalDateTime now = LocalDateTime.now();
+
+        Bookmark b1 = new Bookmark("https://www.youtube.co", now);
+        Bookmark b2 = new Bookmark("https://www.orf.at/api/rest/v1/", now.minusDays(3));
+        Bookmark b3 = new Bookmark("https://www.orf.at", now.minusDays(4));
+        Bookmark b4 = new Bookmark("https://www.fh-campuswien.ac.at/api/rest/v1/", now.minusDays(2));
+        Bookmark b5 = new Bookmark("https://www.moodle.fh-campuswien.ac.at", now.minusDays(1));
+
+        BookmarkTool bt = new BookmarkTool();
+        bt.addBookmark(b1);
+        bt.addBookmark(b2);
+        bt.addBookmark(b3);
+        bt.addBookmark(b4);
+        bt.addBookmark(b5);
+        List<Bookmark> sortedBookmarks = bt.sortBookmarkListByDate();
+
+        List<Bookmark> expectedBookmarks = Arrays.asList(b1, b5, b4, b2, b3);
+
+        assertEquals(expectedBookmarks, sortedBookmarks);
     }
 
 }

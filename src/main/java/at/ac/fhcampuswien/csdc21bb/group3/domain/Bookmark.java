@@ -1,25 +1,37 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
+import jdk.vm.ci.meta.Local;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Bookmark {
     private ArrayList<String> tags;
     private URL url;
     private int rating;
-    private LocalDateTime date;
+    private LocalDateTime creationDate;
 
     public Bookmark(String url) throws MalformedURLException {
-        this(url, new ArrayList<>());
+        this(url, LocalDateTime.now(), new ArrayList<>());
+    }
+
+    public Bookmark(String url, LocalDateTime creationDate) throws MalformedURLException {
+        this(url, creationDate, new ArrayList<>());
     }
 
     public Bookmark(String url, ArrayList<String> tags) throws MalformedURLException {
+        this(url, LocalDateTime.now(), tags);
+    }
+
+    public Bookmark(String url, LocalDateTime creationDate, ArrayList<String> tags) throws MalformedURLException {
         this.url = new URL(url);
         this.tags = tags;
         this.rating = 1;
-        this.date = LocalDateTime.now();
+        this.creationDate = creationDate;
     }
 
     public ArrayList<String> getTags() {
@@ -59,7 +71,9 @@ public class Bookmark {
         this.tags.remove(tag);
     }
 
-    public LocalDateTime getDate() {
-        return this.date;
+    public LocalDateTime getCreationDate() {
+        return this.creationDate;
     }
+
 }
+

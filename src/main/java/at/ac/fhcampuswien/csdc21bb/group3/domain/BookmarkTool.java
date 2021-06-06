@@ -93,4 +93,9 @@ public class BookmarkTool {
     public void sortBookmarkListByRate() {
         bookmarks.sort((o1, o2) -> Integer.compare(o2.getRating(), o1.getRating()));
     }
+
+    public ArrayList<Bookmark> sortBookmarkListByDate() {
+        this.bookmarks.sort(Comparator.comparing(Bookmark::getCreationDate).reversed());
+        return this.bookmarks;
+    }
 }
