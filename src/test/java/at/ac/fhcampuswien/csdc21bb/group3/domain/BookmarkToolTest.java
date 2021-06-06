@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static org.graalvm.compiler.options.OptionType.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.net.MalformedURLException;
@@ -265,6 +266,16 @@ class BookmarkToolTest {
         List<Bookmark> expectedBookmarks = Arrays.asList(b1, b5, b4, b2, b3);
 
         assertEquals(expectedBookmarks, sortedBookmarks);
+    }
+
+    @Test void ensureBookmarkToolCanBeReferencedWithUsers() throws MalformedURLException {
+        User u1 = new User("nichil", "nichil", "strasser");
+        Bookmark b1 = new Bookmark("https://www.youtube.co");
+        BookmarkTool bt1 = new BookmarkTool();
+        bt1.addBookmark(b1);
+        u1.setBookmarkTool(bt1);
+
+        assertEquals(bt1, u1.getBookmarkTool());
     }
 
 }
