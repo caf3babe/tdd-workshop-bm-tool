@@ -1,13 +1,9 @@
 package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
-import jdk.vm.ci.meta.Local;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Bookmark {
     private ArrayList<String> tags;
