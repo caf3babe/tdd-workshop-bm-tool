@@ -95,7 +95,7 @@ class BookmarkTest {
     public void ensureAddedBookmarkHasDate() throws MalformedURLException {
         String urlString = "https://www.orf.at";
         Bookmark b = new Bookmark(urlString);
-        assertNotNull(b.getDate());
+        assertNotNull(b.getCreationDate());
     }
 
 }
