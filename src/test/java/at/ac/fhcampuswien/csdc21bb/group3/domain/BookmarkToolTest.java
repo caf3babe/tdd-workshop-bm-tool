@@ -2,7 +2,6 @@ package at.ac.fhcampuswien.csdc21bb.group3.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.graalvm.compiler.options.OptionType.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.net.MalformedURLException;
